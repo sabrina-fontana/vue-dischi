@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>ex-dischi-musicali</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div id="app">
+        <header>
+            <div class="container">
+                <img src="logo.png" alt="logo" />
+                <div class="search">
+                  <label for="genre">Search</label>
+                  <select name="genre" v-model="selectedGenre">
+                    <option value="all">ALL</option>
+                    <option v-for="genre in arrayGeneri" :value="genre">{{genre}}</option>
+                  </select>
+                </div>
+            </div>
+        </header>
+
+        <div class="cds-container container">
+            <!-- Disco ad esempio -->
+            <div class="cd" v-for="element in arrayDischi" v-if="element.genre === selectedGenre || selectedGenre === 'all'">
+                <img :src="element.poster" alt="">
+                <h3>{{element.title}}</h3>
+                <span class="author">{{element.author}}</span>
+                <span class="year">{{element.year}}</span>
+            </div>
+        </div>
+
+      </div>
+      <script src="main.js" charset="utf-8"></script>
+    </body>
+</html>
